@@ -1,0 +1,24 @@
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# JetBrains
+.idea/
+
+# Logs
+*.log
+
+# Others
+
