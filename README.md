@@ -133,7 +133,7 @@ Total estimated duration: ~8–9 weeks with one full-time developer or a small t
 ## Contributing
 
 1. Clone the repository.
-2. Create a virtual environment and install dependencies: `pip install -r requirements.txt`.
+2. On Windows, run `setup.cmd` to create a virtual environment and install dependencies automatically. Linux/macOS users can run `pip install -r requirements.txt`.
 3. Copy `.env.example` to `.env` and update the credentials for MySQL and IMAP.
 4. Initialize the database tables: `python -c 'from app import db; db.create_all()'`.
 5. In one terminal run the email collector: `python collector.py`.

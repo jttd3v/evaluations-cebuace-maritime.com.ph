@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 load_dotenv()
@@ -23,6 +24,19 @@ class EvaluationForm(db.Model):
     signed_pdf_path = db.Column(db.String(255))
 
 
+class AuditLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    eval_id = db.Column(db.Integer)
+    action = db.Column(db.String(50))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+def log_action(eval_id, action):
+    log = AuditLog(eval_id=eval_id, action=action)
+    db.session.add(log)
+    db.session.commit()
+
+
 @app.route('/')
 def index():
     forms = EvaluationForm.query.all()
@@ -35,6 +49,7 @@ def review(eval_id):
     form = EvaluationForm.query.get_or_404(eval_id)
     form.status = 'Signed'
     db.session.commit()
+    log_action(eval_id, 'Signed')
     return jsonify({'ok': True})
 
 

@@ -15,6 +15,18 @@
             <td>{{ f.status }}</td>
         </tr>
         {% endfor %}
-    </table>
+</table>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123 ||
+                (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
+                (e.ctrlKey && e.key.toLowerCase() === 'u')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
