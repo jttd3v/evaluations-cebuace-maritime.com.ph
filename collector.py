@@ -4,7 +4,7 @@ import uuid
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from db import get_db
+from app import app, db, EvaluationForm, log_action
 
 load_dotenv()
 
@@ -21,8 +21,18 @@ def parse_subject(subject):
 
 
 def create_eval_record(path, vessel, quarter, year, rank):
-    # placeholder for DB insert logic
-    pass
+    with app.app_context():
+        form = EvaluationForm(
+            seafarer_id=0,
+            vessel_id=0,
+            quarter=quarter,
+            year=int(year),
+            pdf_path=str(path),
+            status='Received'
+        )
+        db.session.add(form)
+        db.session.commit()
+        log_action(form.id, 'Received')
 
 
 def fetch_new_emails():
