@@ -133,8 +133,10 @@ Total estimated duration: ~8–9 weeks with one full-time developer or a small t
 ## Contributing
 
 1. Clone the repository.
-2. Install dependencies (Flask, etc.) in a virtual environment.
-3. Configure database credentials in environment variables.
-4. Run the Flask app: `flask run`.
-5. Submit pull requests with descriptive commits.
+2. Create a virtual environment and install dependencies: `pip install -r requirements.txt`.
+3. Copy `.env.example` to `.env` and update the credentials for MySQL and IMAP.
+4. Initialize the database tables: `python -c 'from app import db; db.create_all()'`.
+5. In one terminal run the email collector: `python collector.py`.
+6. In another terminal run the web app: `flask --app app run`.
+7. Submit pull requests with descriptive commits.
 

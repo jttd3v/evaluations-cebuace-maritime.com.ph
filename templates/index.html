@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>Evaluations</title>
+</head>
+<body>
+    <h1>Crew Evaluations</h1>
+    <table border="1">
+        <tr><th>ID</th><th>Seafarer</th><th>Vessel</th><th>Status</th></tr>
+        {% for f in forms %}
+        <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.seafarer_id }}</td>
+            <td>{{ f.vessel_id }}</td>
+            <td>{{ f.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
